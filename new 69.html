@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Math Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .container {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Advanced Math Website</h1>
+
+    <!-- Addition -->
+    <div class="container">
+        <h2>Addition</h2>
+        <input type="number" id="addA" placeholder="First number">
+        <input type="number" id="addB" placeholder="Second number">
+        <button onclick="performAddition()">Add</button>
+        <p>Result: <span id="addResult"></span></p>
+    </div>
+
+    <!-- Subtraction -->
+    <div class="container">
+        <h2>Subtraction</h2>
+        <input type="number" id="subA" placeholder="First number">
+        <input type="number" id="subB" placeholder="Second number">
+        <button onclick="performSubtraction()">Subtract</button>
+        <p>Result: <span id="subResult"></span></p>
+    </div>
+
+    <!-- Multiplication -->
+    <div class="container">
+        <h2>Multiplication</h2>
+        <input type="number" id="mulA" placeholder="First number">
+        <input type="number" id="mulB" placeholder="Second number">
+        <button onclick="performMultiplication()">Multiply</button>
+        <p>Result: <span id="mulResult"></span></p>
+    </div>
+
+    <!-- Division -->
+    <div class="container">
+        <h2>Division</h2>
+        <input type="number" id="divA" placeholder="First number">
+        <input type="number" id="divB" placeholder="Second number">
+        <button onclick="performDivision()">Divide</button>
+        <p>Result: <span id="divResult"></span></p>
+    </div>
+
+    <!-- Algebra: Solving Linear Equation ax + b = c -->
+    <div class="container">
+        <h2>Solve Linear Equation (ax + b = c)</h2>
+        <input type="number" id="a" placeholder="a">
+        <input type="number" id="b" placeholder="b">
+        <input type="number" id="c" placeholder="c">
+        <button onclick="solveLinearEquation()">Solve</button>
+        <p>Solution: <span id="algebraResult"></span></p>
+    </div>
+
+    <!-- Quadratic Equation: ax^2 + bx + c = 0 -->
+    <div class="container">
+        <h2>Solve Quadratic Equation (ax² + bx + c = 0)</h2>
+        <input type="number" id="quadA" placeholder="a">
+        <input type="number" id="quadB" placeholder="b">
+        <input type="number" id="quadC" placeholder="c">
+        <button onclick="solveQuadraticEquation()">Solve</button>
+        <p>Solutions: <span id="quadResult"></span></p>
+    </div>
+
+    <!-- Factorial Calculation -->
+    <div class="container">
+        <h2>Factorial</h2>
+        <input type="number" id="factNum" placeholder="Enter a number">
+        <button onclick="calculateFactorial()">Calculate Factorial</button>
+        <p>Factorial: <span id="factResult"></span></p>
+    </div>
+
+    <!-- Permutation/Combination -->
+    <div class="container">
+        <h2>Permutation & Combination</h2>
+        <input type="number" id="permN" placeholder="n (total)">
+        <input type="number" id="permR" placeholder="r (select)">
+        <button onclick="calculatePermutation()">Permutation</button>
+        <button onclick="calculateCombination()">Combination</button>
+        <p>Result: <span id="permCombResult"></span></p>
+    </div>
+
+    <!-- Olympiad Question -->
+    <div class="container">
+        <h2>Olympiad-Style Question</h2>
+        <button onclick="generateOlympiadQuestion()">Generate Question</button>
+        <p>Question: <span id="olympiadQuestion"></span></p>
+    </div>
+
+    <script>
+        // Function for Addition
+        function performAddition() {
+            let a = parseFloat(document.getElementById("addA").value);
+            let b = parseFloat(document.getElementById("addB").value);
+            let result = a + b;
+            document.getElementById("addResult").innerText = result;
+        }
+
+        // Function for Subtraction
+        function performSubtraction() {
+            let a = parseFloat(document.getElementById("subA").value);
+            let b = parseFloat(document.getElementById("subB").value);
+            let result = a - b;
+            document.getElementById("subResult").innerText = result;
+        }
+
+        // Function for Multiplication
+        function performMultiplication() {
+            let a = parseFloat(document.getElementById("mulA").value);
+            let b = parseFloat(document.getElementById("mulB").value);
+            let result = a * b;
+            document.getElementById("mulResult").innerText = result;
+        }
+
+        // Function for Division
+        function performDivision() {
+            let a = parseFloat(document.getElementById("divA").value);
+            let b = parseFloat(document.getElementById("divB").value);
+            if (b === 0) {
+                document.getElementById("divResult").innerText = "Division by zero is undefined!";
+            } else {
+                let result = a / b;
+                document.getElementById("divResult").innerText = result;
+            }
+        }
+
+        // Function to Solve Linear Equation ax + b = c
+        function solveLinearEquation() {
+            let a = parseFloat(document.getElementById("a").value);
+            let b = parseFloat(document.getElementById("b").value);
+            let c = parseFloat(document.getElementById("c").value);
+
+            if (a === 0) {
+                document.getElementById("algebraResult").innerText = "No solution or infinite solutions";
+            } else {
+                let x = (c - b) / a;
+                document.getElementById("algebraResult").innerText = "x = " + x;
+            }
+        }
+
+        // Function to Solve Quadratic Equation ax² + bx + c = 0
+        function solveQuadraticEquation() {
+            let a = parseFloat(document.getElementById("quadA").value);
+            let b = parseFloat(document.getElementById("quadB").value);
+            let c = parseFloat(document.getElementById("quadC").value);
+
+            let discriminant = b * b - 4 * a * c;
+            if (discriminant < 0) {
+                document.getElementById("quadResult").innerText = "No real solutions";
+            } else {
+                let root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                let root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                document.getElementById("quadResult").innerText = "x1 = " + root1 + ", x2 = " + root2;
+            }
+        }
+
+        // Factorial Calculation
+        function calculateFactorial() {
+            let n = parseInt(document.getElementById("factNum").value);
+            let result = 1;
+            for (let i = 1; i <= n; i++) {
+                result *= i;
+            }
+            document.getElementById("factResult").innerText = result;
+        }
+
+        // Permutation Calculation: nPr = n! / (n-r)!
+        function calculatePermutation() {
+            let n = parseInt(document.getElementById("permN").value);
+            let r = parseInt(document.getElementById("permR").value);
+            let nFact = factorial(n);
+            let nMinusRFact = factorial(n - r);
+            let result = nFact / nMinusRFact;
+            document.getElementById("permCombResult").innerText = "Permutation: " + result;
+        }
+
+        // Combination Calculation: nCr = n! / (r!(n-r)!)
+        function calculateCombination() {
+            let n = parseInt(document.getElementById("permN").value);
+            let r = parseInt(document.getElementById("permR").value);
+            let nFact = factorial(n);
+            let rFact = factorial(r);
+            let nMinusRFact = factorial(n - r);
+            let result = nFact / (rFact * nMinusRFact);
+            document.getElementById("permCombResult").innerText = "Combination: " + result;
+        }
+
+        // Helper Function to Calculate Factorial
+        function factorial(num) {
+            let result = 1;
+            for (let i = 1; i <= num; i++) {
+                result *= i;
+            }
+            return result;
+        }
+
+        // Generate a Simple Olympiad-style Math Question
+        function generateOlympiadQuestion() {
+            const questions = [
+                "What is the sum of the first 100 natural numbers?",
+                "Find the greatest common divisor (GCD) of 56 and 98.",
+                "If x² + 2x - 15 = 0, find the roots of the equation.",
+                "Solve for x: 2x + 3 = 17.",
+                "What is the least common multiple (LCM) of 8 and 12?"
+            ];
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            document.getElementById("olympiadQuestion").innerText = questions[randomIndex];
+        }
+    </script>
+
+</body>
+</html>
